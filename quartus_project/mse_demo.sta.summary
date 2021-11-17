@@ -1,0 +1,161 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup '50MHzClk'
+Slack : 6.936
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'CAM_PCLK'
+Slack : 36.844
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'altera_reserved_tck'
+Slack : 44.984
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold '50MHzClk'
+Slack : 0.358
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'altera_reserved_tck'
+Slack : 0.409
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'CAM_PCLK'
+Slack : 0.445
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery '50MHzClk'
+Slack : 11.800
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'altera_reserved_tck'
+Slack : 47.647
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'altera_reserved_tck'
+Slack : 1.025
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal '50MHzClk'
+Slack : 1.236
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width '50MHzClk'
+Slack : 9.509
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CAM_PCLK'
+Slack : 20.365
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'altera_reserved_tck'
+Slack : 49.712
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup '50MHzClk'
+Slack : 7.898
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'CAM_PCLK'
+Slack : 37.212
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'altera_reserved_tck'
+Slack : 45.510
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold '50MHzClk'
+Slack : 0.345
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'altera_reserved_tck'
+Slack : 0.360
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'CAM_PCLK'
+Slack : 0.398
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery '50MHzClk'
+Slack : 12.510
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'altera_reserved_tck'
+Slack : 47.938
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'altera_reserved_tck'
+Slack : 0.932
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal '50MHzClk'
+Slack : 1.125
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width '50MHzClk'
+Slack : 9.526
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'CAM_PCLK'
+Slack : 20.361
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'altera_reserved_tck'
+Slack : 49.658
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup '50MHzClk'
+Slack : 13.226
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'CAM_PCLK'
+Slack : 39.253
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'altera_reserved_tck'
+Slack : 47.715
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold '50MHzClk'
+Slack : 0.147
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'altera_reserved_tck'
+Slack : 0.184
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'CAM_PCLK'
+Slack : 0.204
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery '50MHzClk'
+Slack : 15.531
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'altera_reserved_tck'
+Slack : 48.978
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'altera_reserved_tck'
+Slack : 0.487
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal '50MHzClk'
+Slack : 0.582
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width '50MHzClk'
+Slack : 9.333
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CAM_PCLK'
+Slack : 20.233
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'altera_reserved_tck'
+Slack : 49.541
+TNS   : 0.000
+
+------------------------------------------------------------
