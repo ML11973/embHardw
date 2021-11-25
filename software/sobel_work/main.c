@@ -2,6 +2,8 @@
 #include <system.h>
 #include <stdlib.h>
 #include <io.h>
+#include <sys/alt_timestamp.h>
+#include <alt_types.h>
 #include "lcd_simple.h"
 #include "grayscale.h"
 #include "i2c.h"
@@ -17,6 +19,12 @@ int main()
   unsigned char *grayscale;
   unsigned char current_mode;
   unsigned char mode;
+
+	alt_u32 timestampStart = 0;
+	alt_u32 timestampStop = 0;
+
+	alt_timestamp_start();
+
   init_LCD();
   init_camera();
   vga_set_swap(VGA_QuarterScreen|VGA_Grayscale);
@@ -88,13 +96,38 @@ int main()
 		      	  		  vga_set_pointer(image);
 		      	  	   }
 		      	  	   break;
-		      default: conv_grayscale((void *)image,
+		      default:
+		    	  timestampStart = alt_timestamp();
+		    	  conv_grayscale((void *)image,
 	                                  cam_get_xsize()>>1,
 	                                  cam_get_ysize());
+		    	  timestampStop = alt_timestamp();
+		    	  printf("conv_grayscale (cycles) : %u\n", timestampStop-timestampStart);
+
                        grayscale = get_grayscale_picture();
-                       sobel_x(grayscale);
-                       sobel_y(grayscale);
+
+
+     		    	  timestampStart = alt_timestamp();
+                      //sobel_x(grayscale);
+     		    	  //sobel_x_inline(grayscale);
+     		    	  sobel_complete(grayscale);
+     		    	  timestampStop = alt_timestamp();
+     		    	  printf("sobel_x (cycles) : %u\n", timestampStop-timestampStart);
+
+
+    		    	  timestampStart = alt_timestamp();
+                      //sobel_y(grayscale);
+                      //sobel_y_inline(grayscale);
+     		    	  timestampStop = alt_timestamp();
+     		    	  printf("sobel_y (cycles) : %u\n", timestampStop-timestampStart);
+
+
+    		    	  timestampStart = alt_timestamp();
                        sobel_threshold(128);
+                      timestampStop = alt_timestamp();
+      		    	  printf("sobel_threshold (cycles) : %u\n", timestampStop-timestampStart);
+
+
                        grayscale=GetSobelResult();
 		               transfer_LCD_with_dma(&grayscale[16520],
 		      		                	cam_get_xsize()>>1,

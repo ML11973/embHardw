@@ -2,7 +2,9 @@
 *.o
 *.d
 *.a
-software/05_Sobel_bsp/*
+software/sobel_work_bsp/*
+software/sobel_bsp/*
+software/sobel/*
 quartus_project/db/*
 quartus_project/base_system/synthesis/*
 quartus_project/output_files/*
