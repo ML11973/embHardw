@@ -112,20 +112,14 @@ int main()
      		    	  //sobel_x_inline(grayscale);
      		    	  sobel_complete(grayscale);
      		    	  timestampStop = alt_timestamp();
-     		    	  printf("sobel_x (cycles) : %u\n", timestampStop-timestampStart);
+     		    	  printf("sobel_complete (cycles) : %u\n", timestampStop-timestampStart);
 
 
-    		    	  timestampStart = alt_timestamp();
-                      //sobel_y(grayscale);
-                      //sobel_y_inline(grayscale);
-     		    	  timestampStop = alt_timestamp();
-     		    	  printf("sobel_y (cycles) : %u\n", timestampStop-timestampStart);
-
-
-    		    	  timestampStart = alt_timestamp();
-                       sobel_threshold(128);
-                      timestampStop = alt_timestamp();
-      		    	  printf("sobel_threshold (cycles) : %u\n", timestampStop-timestampStart);
+    		    	  //timestampStart = alt_timestamp();
+                      //sobel_threshold(128);
+    		    	  //sobel_threshold128();
+                      //timestampStop = alt_timestamp();
+      		    	  //printf("sobel_threshold (cycles) : %u\n", timestampStop-timestampStart);
 
 
                        grayscale=GetSobelResult();

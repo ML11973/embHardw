@@ -26,15 +26,22 @@ void conv_grayscale(void *picture,
 	for (y = 0 ; y < height ; y++) {
 		for (x = 0 ; x < width ; x++) {
 			rgb = pixels[y*width+x];
-			//gray = (((rgb>>11)&0x1F)<<3)*21; // red part
-			//gray += (((rgb>>5)&0x3F)<<2)*72; // green part
-			//gray += (((rgb>>0)&0x1F)<<3)*7; // blue part
-			//gray /= 100;
+			/*
+			gray = (((rgb>>11)&0x1F)<<3)*21; // red part
+			gray += (((rgb>>5)&0x3F)<<2)*72; // green part
+			gray += (((rgb>>0)&0x1F)<<3)*7; // blue part
+			gray /= 100;
+
+			*/
+
+
 			// Optimized RGB to gray
-			gray = (((rgb>>11)&0x1F)<<3)*38; // red part
-			gray += (((rgb>>5)&0x3F)<<2)*75; // green part
-			gray += (((rgb>>0)&0x1F)<<3)*14; // blue part
-			gray >>= 8;
+			// Convert RGB to 8 LSB and divide R by 4, G by 2, B by 2
+			// Original goal is GS = 0.3R + 0.59G + 0.11B
+			gray = ((rgb&0xF100)>>10)// red part
+				 + ((rgb&0x07E0)>>4)  // green part
+				 + ((rgb&0x001F)<<2); // blue part
+
 			IOWR_8DIRECT(grayscale_array,y*width+x,gray);
 		}
 	}

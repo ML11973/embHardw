@@ -3,7 +3,7 @@
 # Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'base_system'
 # SOPC Builder design path: /run/media/leemarc/Shared/Switchdrive/Private/Documents/Master/1_S1/EmbHardw/mse_demo/quartus_project/base_system.sopcinfo
 #
-# Generated: Wed Nov 10 17:18:10 CET 2021
+# Generated: Wed Dec 01 15:14:54 CET 2021
 
 # DO NOT MODIFY THIS FILE
 #
