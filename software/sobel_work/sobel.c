@@ -19,7 +19,7 @@ const char gy_array[3][3] = { {1, 2, 1},
 short *sobel_x_result;
 short *sobel_y_result;
 unsigned short *sobel_rgb565;
-unsigned char *sobel_result;
+volatile unsigned char *sobel_result;
 int sobel_width;
 int sobel_height;
 
@@ -50,9 +50,6 @@ void init_sobel_arrays(int width , int height) {
 
 void sobel_complete(unsigned char *source){
 
-
-
-
 	   int x,y,arrayindex;
 	   short sum = 0;
 	   short resultx = 0;
@@ -62,22 +59,7 @@ void sobel_complete(unsigned char *source){
 
 	   for (y = 1 ; y < (sobel_height-1) ; y++) {
 	      for (x = 1 ; x < (sobel_width-1) ; x++) {
-	    		// sobel x inline
-	    	  //result = 0;
-	    	  /*
-	    	   //result += filterx[0] * source[(y-1)*sobel_width+(x-1)];
-
-	    	   //result += filterx[1] * source[(y-1)*sobel_width+(x+0)];
-	    	   result += filterx[2] * source[(y-1)*sobel_width+(x+1)];
-
-	    	   result += filterx[3] * source[(y)*sobel_width+(x-1)];
-	    	   //result += filterx[4] * source[(y)*sobel_width+(x+0)];
-	    	   result += filterx[5] * source[(y)*sobel_width+(x+1)];
-
-	    	   result += filterx[6] * source[(y+1)*sobel_width+(x-1)];
-	    	   //result += filterx[7] * source[(y+1)*sobel_width+(x+0)];
-	    	   result += filterx[8] * source[(y+1)*sobel_width+(x+1)]; */
-
+	    	  // Sobel X
 	    	   resultx = filterx[0] * source[(y-1)*sobel_width+(x-1)]
 					  + filterx[2] * source[(y-1)*sobel_width+(x+1)]
 					  + filterx[3] * source[(y)*sobel_width+(x-1)]
@@ -86,24 +68,7 @@ void sobel_complete(unsigned char *source){
 					  + filterx[8] * source[(y+1)*sobel_width+(x+1)];
 
 
-	    	   //sobel_x_result[y*sobel_width+x] = resultx;
-
-	    	   /*
-	    	   // sobel y inline
-	    	   result = 0;
-
-	    	   result += filtery[0] * source[(y-1)*sobel_width+(x-1)];
-	    	   //result += filtery[1] * source[(y-1)*sobel_width+(x+0)];
-	    	   result += filtery[2] * source[(y-1)*sobel_width+(x+1)];
-
-	    	   result += filtery[3] * source[(y)*sobel_width+(x-1)];
-	    	   //result += filtery[4] * source[(y)*sobel_width+(x+0)];
-	    	   result += filtery[5] * source[(y)*sobel_width+(x+1)];
-
-	    	   result += filtery[6] * source[(y+1)*sobel_width+(x-1)];
-	    	   //result += filtery[7] * source[(y+1)*sobel_width+(x+0)];
-	    	   result += filtery[8] * source[(y+1)*sobel_width+(x+1)];*/
-
+	    	   // Sobel y
 	    	   resulty = filtery[0] * source[(y-1)*sobel_width+(x-1)]
 					  + filtery[2] * source[(y-1)*sobel_width+(x+1)]
 					  + filtery[3] * source[(y)*sobel_width+(x-1)]
@@ -111,20 +76,10 @@ void sobel_complete(unsigned char *source){
 					  + filtery[6] * source[(y+1)*sobel_width+(x-1)]
 					  + filtery[8] * source[(y+1)*sobel_width+(x+1)];
 
-	    	   //sobel_y_result[y*sobel_width+x] = resulty;
-
 				arrayindex = (y*sobel_width)+x;
-	/*
-				value = sobel_x_result[arrayindex];
-				sum = (value < 0) ? -value : value;
-				value = sobel_y_result[arrayindex];
-				sum += (value < 0) ? -value : value;
-	*/
 
 				sum = (resultx < 0 ? -resultx:resultx)
 					+ (resulty < 0 ? -resulty:resulty);
-
-
 
 				// If sum is greater than 128
 				sobel_result[arrayindex] = (sum >> 7) ? 0xFF : 0;
@@ -134,6 +89,8 @@ void sobel_complete(unsigned char *source){
 	   }
 	   return;
 }
+
+
 
 short sobel_mac( unsigned char *pixels,
                  int x,
@@ -176,9 +133,6 @@ short sobel_mac_unroll( unsigned char *pixels,
    short result = 0;
 
    // dy = -1, dx from -1 to 1
-   //result += filter[(-1+1)*3+(-1+1)] * pixels[(y-1)*width+(x-1)];
-   //result += filter[(-1+1)*3+(0+1)] * pixels[(y-1)*width+(x+0)];
-   //result += filter[(-1+1)*3+(1+1)] * pixels[(y-1)*width+(x+1)];
 
    result += filter[0] * pixels[(y-1)*width+(x-1)];
    result += filter[1] * pixels[(y-1)*width+(x+0)];
@@ -323,17 +277,9 @@ void sobel_threshold128() {
 	for (y = 1 ; y < (sobel_height-1) ; y++) {
 		for (x = 1 ; x < (sobel_width-1) ; x++) {
 			arrayindex = (y*sobel_width)+x;
-/*
-			value = sobel_x_result[arrayindex];
-			sum = (value < 0) ? -value : value;
-			value = sobel_y_result[arrayindex];
-			sum += (value < 0) ? -value : value;
-*/
 
 			sum = (sobel_x_result[arrayindex] < 0 ? -sobel_x_result[arrayindex]:sobel_x_result[arrayindex])
 				+ (sobel_y_result[arrayindex] < 0 ? -sobel_y_result[arrayindex]:sobel_y_result[arrayindex]);
-
-
 
 			// If sum is greater than 128
 			sobel_result[arrayindex] = (sum >> 7) ? 0xFF : 0;

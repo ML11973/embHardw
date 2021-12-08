@@ -11,6 +11,8 @@
 
 void init_sobel_arrays(int width , int height);
 void sobel_complete(unsigned char *source);
+void sobel_complete_cached(unsigned char *source);
+void sobel_complete_part(unsigned char * source, unsigned char partIndex, unsigned char partNum);
 void sobel_x( unsigned char *source );
 void sobel_x_inline( unsigned char *source );
 void sobel_x_with_rgb( unsigned char *source );

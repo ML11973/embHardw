@@ -96,6 +96,35 @@ int main()
 		      	  		  vga_set_pointer(image);
 		      	  	   }
 		      	  	   break;
+		      case 4:
+		    	  // Table split for cache optimization
+
+		    	  timestampStart = alt_timestamp();
+				  conv_grayscale((void *)image,
+									  cam_get_xsize()>>1,
+									  cam_get_ysize());
+				  timestampStop = alt_timestamp();
+				  printf("conv_grayscale (cycles) : %u\n", timestampStop-timestampStart);
+
+				  grayscale = get_grayscale_picture();
+
+
+				  timestampStart = alt_timestamp();
+
+				  sobel_complete(grayscale);
+				  timestampStop = alt_timestamp();
+				  printf("sobel_complete (cycles) : %u\n", timestampStop-timestampStart);
+
+				  grayscale=GetSobelResult();
+				  transfer_LCD_with_dma(&grayscale[16520],
+								cam_get_xsize()>>1,
+								cam_get_ysize(),1);
+				  if ((current_mode&DIPSW_SW8_MASK)!=0) {
+					  vga_set_swap(VGA_QuarterScreen|VGA_Grayscale);
+					  vga_set_pointer(grayscale);
+				  }
+
+		    	  break;
 		      default:
 		    	  timestampStart = alt_timestamp();
 		    	  conv_grayscale((void *)image,

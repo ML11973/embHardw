@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'base_system'
  * SOPC Builder design path: /run/media/leemarc/Shared/Switchdrive/Private/Documents/Master/1_S1/EmbHardw/mse_demo/quartus_project/base_system.sopcinfo
  *
- * Generated: Wed Dec 01 15:14:54 CET 2021
+ * Generated: Tue Dec 07 18:45:30 CET 2021
  */
 
 /*
@@ -137,6 +137,15 @@
 
 
 /*
+ * Custom instruction macros
+ *
+ */
+
+#define ALT_CI_CONV_GRAYSCALE_CI_0(A) __builtin_custom_ini(ALT_CI_CONV_GRAYSCALE_CI_0_N,(A))
+#define ALT_CI_CONV_GRAYSCALE_CI_0_N 0x0
+
+
+/*
  * Define for each module class mastered by the CPU
  *
  */
@@ -149,6 +158,7 @@
 #define __ALTERA_NIOS2_GEN2
 #define __ALTPLL
 #define __CAM_DMA
+#define __CONV_GRAYSCALE_CI
 #define __I2C_MASTER
 #define __LCD_DMA
 #define __VGA_DMA
@@ -405,7 +415,7 @@
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1638367697
+#define SYSID_TIMESTAMP 1638898765
 #define SYSID_TYPE "altera_avalon_sysid_qsys"
 
 
