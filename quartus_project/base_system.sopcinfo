@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="base_system" kind="base_system" version="1.0" fabric="QSYS">
  <!-- Format version 18.1 625 (Future versions may contain additional information.) -->
- <!-- 2021.12.07.18:39:25 -->
+ <!-- 2021.12.21.15:44:12 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1638898765</value>
+  <value>1640097852</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -8258,7 +8258,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="setting_branchpredictiontype">
    <type>java.lang.String</type>
-   <value>Static</value>
+   <value>Dynamic</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -8266,9 +8266,9 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="setting_bhtPtrSz">
    <type>int</type>
-   <value>8</value>
+   <value>12</value>
    <derived>false</derived>
-   <enabled>false</enabled>
+   <enabled>true</enabled>
    <visible>true</visible>
    <valid>true</valid>
   </parameter>
@@ -9355,7 +9355,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="customInstSlavesSystemInfo">
    <type>java.lang.String</type>
-   <value><![CDATA[<info><slave name="conv_grayscale_ci_0" baseAddress="0" addressSpan="1" clockCycleType="VARIABLE" /></info>]]></value>
+   <value><![CDATA[<info><slave name="conv_grayscale_ci_0" baseAddress="0" addressSpan="1" clockCycleType="VARIABLE" /><slave name="sobel_mask_ci_0" baseAddress="1" addressSpan="1" clockCycleType="VARIABLE" /><slave name="sobel_xy_ci_0" baseAddress="2" addressSpan="1" clockCycleType="VARIABLE" /></info>]]></value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -11062,6 +11062,22 @@ parameters are a RESULT of the module parameters. -->
     <opcodeNumber>0</opcodeNumber>
     <opcodeMnemonic>conv_grayscale_ci_0</opcodeMnemonic>
    </customInstruction>
+   <customInstruction>
+    <isBridge>false</isBridge>
+    <moduleName>sobel_mask_CI_0</moduleName>
+    <slaveName>nios_custom_instruction_slave</slaveName>
+    <name>sobel_mask_CI_0.nios_custom_instruction_slave</name>
+    <opcodeNumber>1</opcodeNumber>
+    <opcodeMnemonic>sobel_mask_ci_0</opcodeMnemonic>
+   </customInstruction>
+   <customInstruction>
+    <isBridge>false</isBridge>
+    <moduleName>sobel_xy_CI_0</moduleName>
+    <slaveName>nios_custom_instruction_slave</slaveName>
+    <name>sobel_xy_CI_0.nios_custom_instruction_slave</name>
+    <opcodeNumber>2</opcodeNumber>
+    <opcodeMnemonic>sobel_xy_ci_0</opcodeMnemonic>
+   </customInstruction>
   </interface>
  </module>
  <module name="pio_0" kind="altera_avalon_pio" version="18.1" path="pio_0">
@@ -12756,6 +12772,318 @@ parameters are a RESULT of the module parameters. -->
   </interface>
  </module>
  <module
+   name="sobel_mask_CI_0"
+   kind="sobel_mask_CI"
+   version="1.0"
+   path="sobel_mask_CI_0">
+  <!-- Describes a single module. Module parameters are
+the requested settings for a module instance. -->
+  <parameter name="deviceFamily">
+   <type>java.lang.String</type>
+   <value>UNKNOWN</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="generateLegacySim">
+   <type>boolean</type>
+   <value>false</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <interface
+     name="nios_custom_instruction_slave"
+     kind="nios_custom_instruction_slave"
+     version="18.1">
+   <!-- The connection points exposed by a module instance for the
+particular module parameters. Connection points and their
+parameters are a RESULT of the module parameters. -->
+   <parameter name="CIName">
+    <type>java.lang.String</type>
+    <value></value>
+    <derived>true</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="NPort">
+    <type>int</type>
+    <value>0</value>
+    <derived>true</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="clockCycle">
+    <type>int</type>
+    <value>0</value>
+    <derived>false</derived>
+    <enabled>false</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="clockCycleType">
+    <type>com.altera.sopcmodel.custominstruction.CustomInstruction$ClockCycleType</type>
+    <value>VARIABLE</value>
+    <derived>true</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="opcodeExtension">
+    <type>int</type>
+    <value>0</value>
+    <derived>true</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="opcodeExtensionLocked">
+    <type>boolean</type>
+    <value>false</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="opcodeExtensionLockedValue">
+    <type>int</type>
+    <value>0</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="operands">
+    <type>int</type>
+    <value>2</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="deviceFamily">
+    <type>java.lang.String</type>
+    <value>UNKNOWN</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="generateLegacySim">
+    <type>boolean</type>
+    <value>false</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <type>nios_custom_instruction</type>
+   <isStart>false</isStart>
+   <port>
+    <name>dataA_i</name>
+    <direction>Input</direction>
+    <width>32</width>
+    <role>dataa</role>
+   </port>
+   <port>
+    <name>dataB_i</name>
+    <direction>Input</direction>
+    <width>32</width>
+    <role>datab</role>
+   </port>
+   <port>
+    <name>done_o</name>
+    <direction>Output</direction>
+    <width>1</width>
+    <role>done</role>
+   </port>
+   <port>
+    <name>start_i</name>
+    <direction>Input</direction>
+    <width>1</width>
+    <role>start</role>
+   </port>
+   <port>
+    <name>rst_i</name>
+    <direction>Input</direction>
+    <width>1</width>
+    <role>reset</role>
+   </port>
+   <port>
+    <name>result_o</name>
+    <direction>Output</direction>
+    <width>32</width>
+    <role>result</role>
+   </port>
+   <port>
+    <name>clk_i</name>
+    <direction>Input</direction>
+    <width>1</width>
+    <role>clk</role>
+   </port>
+  </interface>
+ </module>
+ <module
+   name="sobel_xy_CI_0"
+   kind="sobel_xy_CI"
+   version="1.0"
+   path="sobel_xy_CI_0">
+  <!-- Describes a single module. Module parameters are
+the requested settings for a module instance. -->
+  <parameter name="deviceFamily">
+   <type>java.lang.String</type>
+   <value>UNKNOWN</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="generateLegacySim">
+   <type>boolean</type>
+   <value>false</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <interface
+     name="nios_custom_instruction_slave"
+     kind="nios_custom_instruction_slave"
+     version="18.1">
+   <!-- The connection points exposed by a module instance for the
+particular module parameters. Connection points and their
+parameters are a RESULT of the module parameters. -->
+   <parameter name="CIName">
+    <type>java.lang.String</type>
+    <value></value>
+    <derived>true</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="NPort">
+    <type>int</type>
+    <value>0</value>
+    <derived>true</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="clockCycle">
+    <type>int</type>
+    <value>0</value>
+    <derived>false</derived>
+    <enabled>false</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="clockCycleType">
+    <type>com.altera.sopcmodel.custominstruction.CustomInstruction$ClockCycleType</type>
+    <value>VARIABLE</value>
+    <derived>true</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="opcodeExtension">
+    <type>int</type>
+    <value>0</value>
+    <derived>true</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="opcodeExtensionLocked">
+    <type>boolean</type>
+    <value>false</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="opcodeExtensionLockedValue">
+    <type>int</type>
+    <value>0</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="operands">
+    <type>int</type>
+    <value>2</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="deviceFamily">
+    <type>java.lang.String</type>
+    <value>UNKNOWN</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="generateLegacySim">
+    <type>boolean</type>
+    <value>false</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <type>nios_custom_instruction</type>
+   <isStart>false</isStart>
+   <port>
+    <name>clk_i</name>
+    <direction>Input</direction>
+    <width>1</width>
+    <role>clk</role>
+   </port>
+   <port>
+    <name>dataA_i</name>
+    <direction>Input</direction>
+    <width>32</width>
+    <role>dataa</role>
+   </port>
+   <port>
+    <name>dataB_i</name>
+    <direction>Input</direction>
+    <width>32</width>
+    <role>datab</role>
+   </port>
+   <port>
+    <name>done_o</name>
+    <direction>Output</direction>
+    <width>1</width>
+    <role>done</role>
+   </port>
+   <port>
+    <name>result_o</name>
+    <direction>Output</direction>
+    <width>32</width>
+    <role>result</role>
+   </port>
+   <port>
+    <name>rst_i</name>
+    <direction>Input</direction>
+    <width>1</width>
+    <role>reset</role>
+   </port>
+   <port>
+    <name>start_i</name>
+    <direction>Input</direction>
+    <width>1</width>
+    <role>start</role>
+   </port>
+  </interface>
+ </module>
+ <module
    name="sysid"
    kind="altera_avalon_sysid_qsys"
    version="18.1"
@@ -12768,7 +13096,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-   <value>1638898765</value>
+   <value>1640097852</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -12788,7 +13116,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.timestamp</name>
-   <value>1638898765</value>
+   <value>1640097852</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -12804,7 +13132,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>int</type>
-   <value>1638898765</value>
+   <value>1640097852</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -15800,6 +16128,140 @@ parameters are a RESULT of the module parameters. -->
   <endConnectionPoint>nios_custom_instruction_slave</endConnectionPoint>
  </connection>
  <connection
+   name="nios2_gen2_0.custom_instruction_master/sobel_mask_CI_0.nios_custom_instruction_slave"
+   kind="nios_custom_instruction"
+   version="18.1"
+   start="nios2_gen2_0.custom_instruction_master"
+   end="sobel_mask_CI_0.nios_custom_instruction_slave">
+  <parameter name="CIName">
+   <type>java.lang.String</type>
+   <value>sobel_mask_ci_0</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="CINameUpgrade">
+   <type>java.lang.String</type>
+   <value></value>
+   <derived>true</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="arbitrationPriority">
+   <type>int</type>
+   <value>1</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>false</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="baseAddress">
+   <type>long</type>
+   <value>1</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="opcodeExtensionUpgrade">
+   <type>int</type>
+   <value>-1</value>
+   <derived>true</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="deviceFamily">
+   <type>java.lang.String</type>
+   <value>UNKNOWN</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="generateLegacySim">
+   <type>boolean</type>
+   <value>false</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <startModule>nios2_gen2_0</startModule>
+  <startConnectionPoint>custom_instruction_master</startConnectionPoint>
+  <endModule>sobel_mask_CI_0</endModule>
+  <endConnectionPoint>nios_custom_instruction_slave</endConnectionPoint>
+ </connection>
+ <connection
+   name="nios2_gen2_0.custom_instruction_master/sobel_xy_CI_0.nios_custom_instruction_slave"
+   kind="nios_custom_instruction"
+   version="18.1"
+   start="nios2_gen2_0.custom_instruction_master"
+   end="sobel_xy_CI_0.nios_custom_instruction_slave">
+  <parameter name="CIName">
+   <type>java.lang.String</type>
+   <value>sobel_xy_ci_0</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="CINameUpgrade">
+   <type>java.lang.String</type>
+   <value></value>
+   <derived>true</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="arbitrationPriority">
+   <type>int</type>
+   <value>1</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>false</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="baseAddress">
+   <type>long</type>
+   <value>2</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="opcodeExtensionUpgrade">
+   <type>int</type>
+   <value>-1</value>
+   <derived>true</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="deviceFamily">
+   <type>java.lang.String</type>
+   <value>UNKNOWN</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="generateLegacySim">
+   <type>boolean</type>
+   <value>false</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <startModule>nios2_gen2_0</startModule>
+  <startConnectionPoint>custom_instruction_master</startConnectionPoint>
+  <endModule>sobel_xy_CI_0</endModule>
+  <endConnectionPoint>nios_custom_instruction_slave</endConnectionPoint>
+ </connection>
+ <connection
    name="clk_0.clk_reset/altpll_0.inclk_interface_reset"
    kind="reset"
    version="18.1"
@@ -16576,7 +17038,7 @@ parameters are a RESULT of the module parameters. -->
   <version>1.0</version>
  </plugin>
  <plugin>
-  <instanceCount>1</instanceCount>
+  <instanceCount>3</instanceCount>
   <name>nios_custom_instruction_slave</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
@@ -16657,6 +17119,22 @@ parameters are a RESULT of the module parameters. -->
  </plugin>
  <plugin>
   <instanceCount>1</instanceCount>
+  <name>sobel_mask_CI</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IModule</subtype>
+  <displayName>sobel_mask_CI</displayName>
+  <version>1.0</version>
+ </plugin>
+ <plugin>
+  <instanceCount>1</instanceCount>
+  <name>sobel_xy_CI</name>
+  <type>com.altera.entityinterfaces.IElementClass</type>
+  <subtype>com.altera.entityinterfaces.IModule</subtype>
+  <displayName>sobel_xy_CI</displayName>
+  <version>1.0</version>
+ </plugin>
+ <plugin>
+  <instanceCount>1</instanceCount>
   <name>altera_avalon_sysid_qsys</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IModule</subtype>
@@ -16696,7 +17174,7 @@ parameters are a RESULT of the module parameters. -->
   <version>18.1</version>
  </plugin>
  <plugin>
-  <instanceCount>1</instanceCount>
+  <instanceCount>3</instanceCount>
   <name>nios_custom_instruction</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IConnection</subtype>

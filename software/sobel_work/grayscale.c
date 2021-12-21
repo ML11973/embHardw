@@ -9,6 +9,8 @@
 #include <io.h>
 #include <system.h>
 
+#define CI
+
 
 unsigned char *grayscale_array;
 int grayscale_width = 0;
@@ -35,16 +37,21 @@ void conv_grayscale(void *picture,
 
 			*/
 
-
+#ifdef CI
+			gray=ALT_CI_CONV_GRAYSCALE_CI_0(rgb);
+#else
 			// Optimized RGB to gray
 			// Convert RGB to 8 LSB and divide R by 4, G by 2, B by 2
 			// Original goal is GS = 0.3R + 0.59G + 0.11B
-			/*
+
 			gray = ((rgb&0xF100)>>10)// red part
 				 + ((rgb&0x07E0)>>4)  // green part
 				 + ((rgb&0x001F)<<2); // blue part
-			*/
-			gray=ALT_CI_CONV_GRAYSCALE_CI_0(rgb);
+
+#endif
+
+
+
 
 			IOWR_8DIRECT(grayscale_array,y*width+x,gray);
 		}

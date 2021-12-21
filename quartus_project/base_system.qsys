@@ -185,6 +185,22 @@
          type = "boolean";
       }
    }
+   element sobel_mask_CI_0
+   {
+      datum _sortIndex
+      {
+         value = "14";
+         type = "int";
+      }
+   }
+   element sobel_xy_CI_0
+   {
+      datum _sortIndex
+      {
+         value = "15";
+         type = "int";
+      }
+   }
    element sysid
    {
       datum _sortIndex
@@ -498,7 +514,7 @@
   <parameter name="cpuArchRev" value="1" />
   <parameter name="cpuID" value="0" />
   <parameter name="cpuReset" value="false" />
-  <parameter name="customInstSlavesSystemInfo"><![CDATA[<info><slave name="conv_grayscale_ci_0" baseAddress="0" addressSpan="1" clockCycleType="VARIABLE" /></info>]]></parameter>
+  <parameter name="customInstSlavesSystemInfo"><![CDATA[<info><slave name="conv_grayscale_ci_0" baseAddress="0" addressSpan="1" clockCycleType="VARIABLE" /><slave name="sobel_mask_ci_0" baseAddress="1" addressSpan="1" clockCycleType="VARIABLE" /><slave name="sobel_xy_ci_0" baseAddress="2" addressSpan="1" clockCycleType="VARIABLE" /></info>]]></parameter>
   <parameter name="customInstSlavesSystemInfo_nios_a" value="&lt;info/&gt;" />
   <parameter name="customInstSlavesSystemInfo_nios_b" value="&lt;info/&gt;" />
   <parameter name="customInstSlavesSystemInfo_nios_c" value="&lt;info/&gt;" />
@@ -594,9 +610,9 @@
   <parameter name="setting_asic_synopsys_translate_on_off" value="false" />
   <parameter name="setting_asic_third_party_synthesis" value="false" />
   <parameter name="setting_avalonDebugPortPresent" value="false" />
-  <parameter name="setting_bhtPtrSz" value="8" />
+  <parameter name="setting_bhtPtrSz" value="12" />
   <parameter name="setting_bigEndian" value="false" />
-  <parameter name="setting_branchpredictiontype" value="Static" />
+  <parameter name="setting_branchpredictiontype" value="Dynamic" />
   <parameter name="setting_breakslaveoveride" value="false" />
   <parameter name="setting_clearXBitsLDNonBypass" value="true" />
   <parameter name="setting_dc_ecc_present" value="true" />
@@ -706,6 +722,8 @@
   <parameter name="registerDataIn" value="true" />
   <parameter name="rowWidth" value="12" />
  </module>
+ <module name="sobel_mask_CI_0" kind="sobel_mask_CI" version="1.0" enabled="1" />
+ <module name="sobel_xy_CI_0" kind="sobel_xy_CI" version="1.0" enabled="1" />
  <module
    name="sysid"
    kind="altera_avalon_sysid_qsys"
@@ -973,6 +991,24 @@
   <parameter name="CIName" value="conv_grayscale_ci_0" />
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0" />
+ </connection>
+ <connection
+   kind="nios_custom_instruction"
+   version="18.1"
+   start="nios2_gen2_0.custom_instruction_master"
+   end="sobel_mask_CI_0.nios_custom_instruction_slave">
+  <parameter name="CIName" value="sobel_mask_ci_0" />
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="1" />
+ </connection>
+ <connection
+   kind="nios_custom_instruction"
+   version="18.1"
+   start="nios2_gen2_0.custom_instruction_master"
+   end="sobel_xy_CI_0.nios_custom_instruction_slave">
+  <parameter name="CIName" value="sobel_xy_ci_0" />
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="2" />
  </connection>
  <connection
    kind="reset"

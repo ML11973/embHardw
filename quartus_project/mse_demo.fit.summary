@@ -1,16 +1,16 @@
-Fitter Status : Successful - Tue Dec  7 18:41:33 2021
+Fitter Status : Successful - Tue Dec 21 15:48:27 2021
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : mse_demo
 Top-level Entity Name : mse_demo
 Family : Cyclone IV E
 Device : EP4CE30F23C7
 Timing Models : Final
-Total logic elements : 9,793 / 28,848 ( 34 % )
-    Total combinational functions : 8,681 / 28,848 ( 30 % )
-    Dedicated logic registers : 5,722 / 28,848 ( 20 % )
-Total registers : 5790
+Total logic elements : 10,031 / 28,848 ( 35 % )
+    Total combinational functions : 8,869 / 28,848 ( 31 % )
+    Dedicated logic registers : 5,874 / 28,848 ( 20 % )
+Total registers : 5942
 Total pins : 121 / 329 ( 37 % )
 Total virtual pins : 0
-Total memory bits : 396,928 / 608,256 ( 65 % )
+Total memory bits : 405,120 / 608,256 ( 67 % )
 Embedded Multiplier 9-bit elements : 6 / 132 ( 5 % )
 Total PLLs : 1 / 4 ( 25 % )
